@@ -2,8 +2,10 @@ import json
 from datetime import datetime
 
 from ingestion.alpha_vantage import get_daily_stock
+from ingestion.load_raw_to_postgres import load_raw_stock_file
 
 symbol = "AAPL"
+
 data = get_daily_stock(symbol)
 
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -13,3 +15,8 @@ with open(file_path, "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
 
 print(f"Arquivo salvo em: {file_path}")
+
+load_raw_stock_file(
+    file_path=file_path,
+    symbol=symbol,
+)
