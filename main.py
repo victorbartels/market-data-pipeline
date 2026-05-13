@@ -6,6 +6,7 @@ from ingestion.load_raw_to_postgres import load_raw_stock_file
 from ingestion.raw_to_bronze import load_raw_to_bronze
 from ingestion.bronze_to_silver import load_bronze_to_silver
 from ingestion.silver_to_gold import load_silver_to_gold
+from ingestion.upload_to_adls import upload_file_to_adls
 
 symbol = "AAPL"
 
@@ -31,3 +32,4 @@ load_raw_stock_file(
 load_raw_to_bronze()
 load_bronze_to_silver()
 load_silver_to_gold()
+upload_file_to_adls(file_path)
